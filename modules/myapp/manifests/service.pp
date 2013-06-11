@@ -5,7 +5,7 @@ class myapp::service inherits myapp {
   daemontools::service {'myapp':
     ensure  => running,
     command => '/usr/bin/myapp',
-    require => Class['myapp::package'],
+    require => Class['myapp::config'],
   }
 
 }
