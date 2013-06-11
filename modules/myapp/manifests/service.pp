@@ -3,8 +3,9 @@ class myapp::service inherits myapp {
   include daemontools::setup
 
   daemontools::service {'myapp':
-    ensure  => stopped,
+    ensure  => running,
     command => '/usr/bin/myapp',
+    require => Class['myapp::package'],
   }
 
 }

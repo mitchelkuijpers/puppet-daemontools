@@ -6,6 +6,7 @@ class myapp::package inherits myapp {
     owner  => root,
     group  => root,
     source => 'puppet:///modules/myapp/myapp',
+    notify => Class['myapp::service'],
   }
 
 }
