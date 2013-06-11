@@ -44,7 +44,15 @@ define daemontools::service($ensure="running", $logpath = '', $command) {
     mode    => 0755,
     content => template("daemontools/service.erb"),
     require => File["/etc/service/${name}"],
-    notify  => Service[$name],
+    notify  => [Exec["waitforit"],Service[$name]],
+  }
+
+  #
+  # Hack
+  #
+  exec {'waitforit':
+    command     => '/bin/sleep 10',
+    refreshonly => true,
   }
 
   #
@@ -55,6 +63,7 @@ define daemontools::service($ensure="running", $logpath = '', $command) {
     ensure   => $ensure,
     provider => daemontools,
     require  => [
+      Exec["waitforit"],
       File["/etc/service/${name}/run"],
       File["/etc/service/${name}/supervise"],
     ],
