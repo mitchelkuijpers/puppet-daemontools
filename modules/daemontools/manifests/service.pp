@@ -1,4 +1,4 @@
-define daemontools::service($ensure="running") {
+define daemontools::service($ensure="running", $command) {
 
   file {"/etc/service/${name}":
     ensure => directory,
@@ -13,7 +13,7 @@ define daemontools::service($ensure="running") {
     ensure  => present,
     mode    => 0755,
     require => File["/etc/service/${name}"],
-    content => "#!/bin/bash\nexec sleep 60",
+    content => template("daemontools/service.erb"),
   }
 
   service { $name:

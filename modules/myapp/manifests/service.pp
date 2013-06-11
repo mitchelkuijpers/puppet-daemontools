@@ -2,8 +2,9 @@ class myapp::service inherits myapp {
 
   include daemontools::setup
 
-  daemontools::service {'test':
-    ensure => stopped,
+  daemontools::service {'myapp':
+    ensure  => stopped,
+    command => '/usr/bin/myapp',
   }
 
 }
