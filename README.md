@@ -2,6 +2,8 @@
 
 This module facilitates installing and setting up services managed by Daemontools.
 
+http://forge.puppetlabs.com/jbussdieker/daemontools
+
 ## Parameters
 
  * ensure: running, stopped. default: running
