@@ -1,9 +1,9 @@
 define daemontools::service($ensure="running", $logpath = '', $command) {
 
   if $logpath != '' {
-    $u_logpath = $logpath
+    $real_logpath = $logpath
   } else {
-    $u_logpath = "/etc/service/${name}/log"
+    $real_logpath = "/etc/service/${name}/log"
   }
 
   #
