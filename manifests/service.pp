@@ -1,29 +1,31 @@
 define daemontools::service($ensure="running", $logpath = '', $command) {
 
+  include daemontools
+
   if $logpath != '' {
     $real_logpath = $logpath
   } else {
-    $real_logpath = "/etc/service/${name}/log"
+    $real_logpath = "/etc/${name}/log"
   }
 
   #
   # Folder structure
   #
 
-  file {"/etc/service/${name}":
+  file {"/etc/${name}":
     ensure => directory,
     notify => Service[$name],
   }
 
-  file {"/etc/service/${name}/supervise":
+  file {"/etc/${name}/supervise":
     ensure  => directory,
-    require => File["/etc/service/${name}"],
+    require => File["/etc/${name}"],
     notify  => Service[$name],
   }
 
-  file {"/etc/service/${name}/log":
+  file {"/etc/${name}/log":
     ensure  => directory,
-    require => File["/etc/service/${name}"],
+    require => File["/etc/${name}"],
     notify  => Service[$name],
   }
 
@@ -31,28 +33,20 @@ define daemontools::service($ensure="running", $logpath = '', $command) {
   # Run files
   #
 
-  file {"/etc/service/${name}/log/run":
+  file {"/etc/${name}/log/run":
     ensure  => present,
     mode    => 0755,
     content => template("daemontools/log.erb"),
-    require => File["/etc/service/${name}/log"],
+    require => File["/etc/${name}/log"],
     notify  => Service[$name],
   }
 
-  file {"/etc/service/${name}/run":
+  file {"/etc/${name}/run":
     ensure  => present,
     mode    => 0755,
     content => template("daemontools/service.erb"),
-    require => File["/etc/service/${name}"],
-    notify  => [Exec["waitforit"],Service[$name]],
-  }
-
-  #
-  # Hack
-  #
-  exec {'waitforit':
-    command     => '/bin/sleep 10',
-    refreshonly => true,
+    require => File["/etc/${name}"],
+    notify  => Service[$name],
   }
 
   #
@@ -63,9 +57,8 @@ define daemontools::service($ensure="running", $logpath = '', $command) {
     ensure   => $ensure,
     provider => daemontools,
     require  => [
-      Exec["waitforit"],
-      File["/etc/service/${name}/run"],
-      File["/etc/service/${name}/supervise"],
+      File["/etc/${name}/run"],
+      File["/etc/${name}/supervise"],
     ],
   }
 

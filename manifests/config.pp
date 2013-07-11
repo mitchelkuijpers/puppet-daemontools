@@ -5,7 +5,6 @@ class daemontools::config inherits daemontools {
     mode    => 0755,
     owner   => root,
     group   => root,
-    require => Class['daemontools::package'],
   }
 
 }
