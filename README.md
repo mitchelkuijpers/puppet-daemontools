@@ -1,3 +1,13 @@
+# Daemontools Module
+
+This module facilitates installing and setting up services managed by Daemontools.
+
+## Parameters
+
+## Usage
+
+## Testing
+
 Install daemontools
 
 `sudo puppet apply --modulepath=puppet-daemontools/modules -e "include daemontools::setup"`
