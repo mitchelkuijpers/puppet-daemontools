@@ -4,24 +4,12 @@ This module facilitates installing and setting up services managed by Daemontool
 
 ## Parameters
 
+ * ensure: running
+ * command: Command line to run service.
+
 ## Usage
 
-## Testing
-
-Install daemontools
-
-`sudo puppet apply --modulepath=puppet-daemontools/modules -e "include daemontools::setup"`
-
-Install test app
-
-`sudo puppet apply --modulepath=puppet-daemontools/modules -e "include myapp::setup"`
-
-Debug processes
-
-`ps -edf | grep -E "svscan|supervise|multilog|myapp" | grep -v grep`
-
-Start over
-
-`ps -edf | grep -E "svscan|supervise|multilog|myapp" | grep -v grep | awk '{print $2}' | xargs sudo kill -9`
-`rm -rf /etc/service/*`
-`apt-get remove daemontools`
+    daemontools::service {'myapp':
+      ensure  => running,
+      command => '/usr/bin/myapp',
+    }
