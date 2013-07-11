@@ -8,7 +8,7 @@ http://forge.puppetlabs.com/jbussdieker/daemontools
 
  * ensure: running, stopped. default: running
  * command: Command line to run service.
- * logpath: Directory to store log files in.
+ * logpath: Directory to store log files in. default: /var/log/${name}
 
 ## Usage
 
