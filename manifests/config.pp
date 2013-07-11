@@ -1,4 +1,4 @@
-class daemontools::config inherits daemontools {
+class daemontools::config {
 
   file {'/etc/service':
     ensure  => directory,

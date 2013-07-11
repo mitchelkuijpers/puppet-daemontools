@@ -1,4 +1,4 @@
-class daemontools::package inherits daemontools {
+class daemontools::package {
 
   package {'daemontools':
     ensure => present,

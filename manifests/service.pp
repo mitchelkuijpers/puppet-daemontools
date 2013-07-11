@@ -2,10 +2,17 @@ define daemontools::service($ensure="running", $logpath = '', $command) {
 
   include daemontools
 
+  #
+  # Log path structure
+  #
   if $logpath != '' {
     $real_logpath = $logpath
   } else {
-    $real_logpath = "/etc/${name}/log"
+    $real_logpath = "/var/log/${name}"
+  }
+
+  file {$real_logpath:
+    ensure => directory,
   }
 
   #
