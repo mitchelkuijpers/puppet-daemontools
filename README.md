@@ -15,4 +15,5 @@ http://forge.puppetlabs.com/jbussdieker/daemontools
     daemontools::service {'myapp':
       ensure  => running,
       command => '/usr/bin/myapp',
+      logpath => '/var/log/myapp',
     }
