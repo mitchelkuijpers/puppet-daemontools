@@ -1,5 +1,7 @@
 # Daemontools Module
 
+[![Build Status](https://travis-ci.org/jbussdieker/puppet-daemontools.png?branch=master)](https://travis-ci.org/jbussdieker/puppet-daemontools)
+
 This module facilitates installing and setting up services managed by Daemontools.
 
 http://forge.puppetlabs.com/jbussdieker/daemontools
