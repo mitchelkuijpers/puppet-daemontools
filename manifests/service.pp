@@ -1,4 +1,9 @@
-define daemontools::service($ensure="running", $logpath = '', $service_script = '', $command = '') {
+define daemontools::service(
+	$ensure="running",
+	$logpath = '',
+	$service_script = '',
+	$command = '',
+) {
 
   include daemontools
 
