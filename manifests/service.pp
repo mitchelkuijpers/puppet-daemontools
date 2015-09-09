@@ -3,6 +3,8 @@ define daemontools::service(
 	$logpath = '',
 	$service_script = '',
 	$command = '',
+	$logfiles = 100,
+	$logsize = 16777215,
 ) {
 
   include daemontools
